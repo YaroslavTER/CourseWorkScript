@@ -1,28 +1,28 @@
 create table RESTAURANTS_CHAIN(
 	ChainPK integer primary key,
-    DirectorFK integer,
-    Name varchar(40),
-    Type varchar(20) check(type in ('фаст-фуд', 'середні руки',
-    'елітний')),
-    Address varchar(200),
-    Phone varchar(15) unique,
-    Costs number(10,3) check(Costs > 0),
-    Income number(10,3) check(Income > 0),
-    constraint director_constr foreign key(DirectorFK) references STAFF(StaffPK)
+	DirectorFK integer,
+	Name varchar(40),
+	Type varchar(20) check(type in ('фаст-фуд', 'середні руки',
+	'елітний')),
+	Address varchar(200),
+	Phone varchar(15) unique,
+	Costs number(10,3) check(Costs > 0),
+	Income number(10,3) check(Income > 0),
+	constraint director_constr foreign key(DirectorFK) references STAFF(StaffPK)
 );
 
 create table RESTAURANT(
 	RestPK integer primary key,
-    WarehouseFK integer,
-    ChainFK integer,
-    Capacity integer check(Capacity > 72),
-    CheckMid number(10,3) check(Checkmid > 0),
-    LastInspection data,
-    Address varchar(200),
-    Phone varchar(15) unique,
-    Costs number(10,3) check(Costs > 0),
-    Income number(10,3) check(Income > 0),
-    constraint chain_constr foreign key(ChainFK) references RESTAURANTS_CHAIN(ChainPK)
+	WarehouseFK integer,
+	ChainFK integer,
+	Capacity integer check(Capacity > 72),
+	CheckMid number(10,3) check(Checkmid > 0),
+	LastInspection data,
+	Address varchar(200),
+	Phone varchar(15) unique,
+	Costs number(10,3) check(Costs > 0),
+	Income number(10,3) check(Income > 0),
+	constraint chain_constr foreign key(ChainFK) references RESTAURANTS_CHAIN(ChainPK)
 	constraint warehouse_constr foreign key(WarehouseFK) references WAREHOUSE(WarehousePK)
 );
 
@@ -36,7 +36,7 @@ create table STAFF(
 	Hiredate date,
 	Salary number(6,2) check(Salary > 0),
 	Commission number(6,2) check(Commission > 0),
-    constraint restaurant_constr foreign key(RestFK) references RESTAURANT(RestPK)
+	constraint restaurant_constr foreign key(RestFK) references RESTAURANT(RestPK)
 );
 
 create table VENDOR(
